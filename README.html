@@ -1,28 +1,41 @@
-# MCSample
-A class for generating multidimensional samples from a given PDF. 
-
-# Variable Name Conventions
-A variable is identified by a few letters identifying the type then _name. The types are indicated via
-d_name ==> double
-i_name ==> integer 
-b_name ==> boolean
-
-pd_name ==> pointer to/array of doubles
-pF_name ==> pointer to function 
-
-# Class Atributes
-## Protected Attributes: 
-int i_dimension; This is an integer indicating the dimension of the sampling space 
-double * pd_lower_lim; An array of size [i_dimension] that stores a list of the lower bounds on the sample space (must be a finite space)
-double * pd_upper_lim; An array of size [i_dimension] that stores a list of the upper bounds on the sample space (must be a finite space)
-double (*pF_pdf)(double *); A pointer to a PDF function that accepts a vector of dimension [i_dimension] and returns the probabiltiy of that point
-
-## Public Methods:
-static double getRandomInRange(double d_lower, double d_upper); A static method for randomly generating a double in [d_lower,d_upper)
-MCSample(int i_dim, double * pd_lower, double * pd_upper, double (*pF_func)(double *) ); Constructor. Accepts dimension, list of lower bounds, then upper bounds, and finally a pointer to a pdf function. 
-double * genSample(); //Returns a vector of doubles of size [i_dimension] from the sample space with a probability distribution given by the PDF passed.
-
-
-# Usage Notes
-This implementation is extremely crude; it heavily relies on unsafe usage of arrays and pointers. Future updates will hopefully use a more robust data structure. 
-In addition, using function objects instead of a function pointer would be a desireable upgrade. Usage is fairly simple otherwise. 
+<!DOCTYPE HTML>
+<html>
+  <head><title>README</title></head>
+  <body>
+    <h1>MCSample</h1>
+    <p>A class for generating multidimensional samples from a specified PDF.</p>
+    <h2>Conventions</h2>
+    <p>Functions are named using camel text with the first letter of each word lowercase while subsequent letters of each new word are capitalized. 
+    As an example, myFunctionName().</p>
+    <h3>Variable Names</h3>
+    <p>A variable is identified first by a key identifying the type, then _unique_variable_name with words lowercase, separated by underscores.
+    The type keys are:<br>
+    <ul>
+      <li>d_  ==> double</li>
+      <li>i_  ==> integer</li>
+      <li>b_  ==> boolean</li>
+      <li>pd_ ==> pointer to/array of doubles</li>
+      <li>pF_ ==> pointer to function </li>
+    </ul>
+    </p>
+    <h2>Class Attributes</h2>
+    <h3>Protected:</h3>
+    <p>
+      <em>int</em> <it>i_dimension</it> -- An integer indicating the dimension of the sample space and the vectors sampled.<br>
+      <em>double *</em> <it>pd_lower_lim</it> -- An array of size <it>i_dimension</it> that stores a list of lower bounds on the sample space.<br>
+      <em>double *</em> <it>pd_upper_lim</it> -- An array of size <it>i_dimension</it> that stores a list of upper bounds on the sample space.<br>
+      <em>double (*<it>pF_pdf</it>)(double *)</em> -- A pointer to a function of return type <em>double</em> and argument type <em>double *</em> which is the PDF we are drawing from.<br>
+    </p>
+    <h3>Public:</h3>
+    <p>
+      <em>static double</em> <it>getRandomInRange</it>(<em>double</em> <it>d_lower</it>, <em>double</em> <it>d_upper</it>) -- A static method for generating a random double in [<it>d_lower</it>,<it>d_upper</it>).<br>
+      <it>MCSample</it>(<em>int</em><it>i_dim</it>,<em>double *</em><it>pd_lower</it>,<em>double *</em><it>pd_upper</it>,<it>double (*pF_func)(double *)</it>) -- Constructor. 
+      Requires dimensionality of sample space, then list of lower and upper bounds, then a pointer to a PDF to draw from.<br>
+      <em>double *</em><it>genSample</it>() -- Returns a vector randomly drawn from the probability PDF passed to the generator.<br>
+    </p>
+    <h2>Usage Notes</h2>
+    <p>This implementation is extremely crude; it heavily relies on unsafe usage of arrays and pointers. Future updates will hopefully employ more robust objects. 
+    In addition, future updates will hopefully replace usage of a function pointer with a function object.
+    </p>
+  </body>
+</html>
