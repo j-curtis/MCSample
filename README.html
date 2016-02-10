@@ -21,17 +21,17 @@
     <h2>Class Attributes</h2>
     <h3>Protected:</h3>
     <p>
-      <em>int</em> <it>i_dimension</it> -- An integer indicating the dimension of the sample space and the vectors sampled.<br>
-      <em>double *</em> <it>pd_lower_lim</it> -- An array of size <it>i_dimension</it> that stores a list of lower bounds on the sample space.<br>
-      <em>double *</em> <it>pd_upper_lim</it> -- An array of size <it>i_dimension</it> that stores a list of upper bounds on the sample space.<br>
-      <em>double (*<it>pF_pdf</it>)(double *)</em> -- A pointer to a function of return type <em>double</em> and argument type <em>double *</em> which is the PDF we are drawing from.<br>
+      <em>int</em> <strong>i_dimension</strong> -- An integer indicating the dimension of the sample space and the vectors sampled.<br>
+      <em>double *</em> <strong>pd_lower_lim</strong> -- An array of size <strong>i_dimension</strong> that stores a list of lower bounds on the sample space.<br>
+      <em>double *</em> <strong>pd_upper_lim</strong> -- An array of size <strong>i_dimension</strong> that stores a list of upper bounds on the sample space.<br>
+      <em>double</em> (* <strong>pF_pdf</strong>)<em>(double *)</em> -- A pointer to a function of return type <em>double</em> and argument type <em>double *</em> which is the PDF we are drawing from.<br>
     </p>
     <h3>Public:</h3>
     <p>
-      <em>static double</em> <it>getRandomInRange</it>(<em>double</em> <it>d_lower</it>, <em>double</em> <it>d_upper</it>) -- A static method for generating a random double in [<it>d_lower</it>,<it>d_upper</it>).<br>
-      <it>MCSample</it>(<em>int</em><it>i_dim</it>,<em>double *</em><it>pd_lower</it>,<em>double *</em><it>pd_upper</it>,<it>double (*pF_func)(double *)</it>) -- Constructor. 
+      <em>static double</em> <strong>getRandomInRange</strong>(<em>double</em> <strong>d_lower</strong>, <em>double</em> <strong>d_upper</strong>) -- A static method for generating a random double in [<strong>d_lower</strong>, <strong>d_upper</strong>).<br>
+      <strong>MCSample</strong>(<em>int</em> <strong>i_dim</strong>, <em>double *</em> <strong>pd_lower</strong>, <em>double *</em> <strong>pd_upper</strong>, <em>double</em> (* <strong>pF_func</strong> ) (<em>double *</em>) ) -- Constructor. 
       Requires dimensionality of sample space, then list of lower and upper bounds, then a pointer to a PDF to draw from.<br>
-      <em>double *</em><it>genSample</it>() -- Returns a vector randomly drawn from the probability PDF passed to the generator.<br>
+      <em>double *</em> <strong>genSample</strong>() -- Returns a vector randomly drawn from the probability PDF passed to the generator.<br>
     </p>
     <h2>Usage Notes</h2>
     <p>This implementation is extremely crude; it heavily relies on unsafe usage of arrays and pointers. Future updates will hopefully employ more robust objects. 
