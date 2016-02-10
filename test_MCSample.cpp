@@ -4,6 +4,7 @@
 
 #include "MCSample.h"
 #include <iostream>
+#include <cmath>
 
 double pdf(double * r){
 	//We randomly select from the r < 1
@@ -22,15 +23,20 @@ int main(){
 	//We create an MCSampler class 
 	MCSample sampler(i_dim,min,max,&pdf);
 
-	double * sample = sampler.genSample();
+	for(int i = 0; i < 10; i++){
 
-	std::cout<<"(";
-	for(int j = 0; j < i_dim; j++){
-		std::cout<<sample[j]<<",";
+		double * sample = sampler.genSample();
+		double d_radius2 = 0.0;
+
+		for(int j = 0; j < i_dim; j++){
+			d_radius2 += sample[j]*sample[j];
+		}
+
+		std::cout<<"d_radius: "<<std::sqrt(d_radius2)<<", "<<sample[0]<<", "<<sample[1]<<std::endl;
+
+		delete [] sample;
+
 	}
-	std::cout<<")"<<std::endl;
-
-	delete [] sample;
 
 	return 0;
 }

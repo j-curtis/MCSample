@@ -62,7 +62,7 @@ double * MCSample::genSample(){
 
 		//ACCEPT WITH PROBABILITY PDF(SAMPLE)
 		//We accept if d_prob>= d_threshold otherwise reject 
-		if(d_prob <= d_threshold){ 
+		if(d_prob >= d_threshold){ 
 
 			//WE SAVE THE RESULT
 			for(int i = 0; i < i_dimension; i++){
