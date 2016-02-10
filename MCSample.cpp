@@ -38,26 +38,24 @@ MCSample::MCSample(int i_dim,double* pd_lower,double* pd_upper,double (*pF_func)
 }
 
 //This function is the sampling function 
-double ** MCSample::genSample(int i_num){
+double * MCSample::genSample(){
 	//First we allocate the memory 
-	double ** ppd_samples = new double[i_dimension][i_num];
+	double * pd_sample = new double[i_dimension];
 
-	//This counts how many sample we have collected 
-	int i_num_samples = 0;
-
-	//We keep generating samples until we have reached the desired number 
+	//We keep generating samples until we have acceptance
+	bool b_accept = false; 
 	do{
 
 		//ALLOCATE MEMORY
-		double * pd_sample = new double[i_dimension];
+		double * pd_temp = new double[i_dimension];
 
 		//RANDOMLY FILL COMPONENTS
 		for(int i = 0; i < i_dimension; i++){
-			pd_sample[i] = MCSample::getRandomInRange(pd_lower_lim[i],pd_upper_lim[i]);
+			pd_temp[i] = MCSample::getRandomInRange(pd_lower_lim[i],pd_upper_lim[i]);
 		}
 
 		//COMPUTE PDF OF SAMPLE
-		double d_prob = (*pF_pdf)(pd_sample);
+		double d_prob = (*pF_pdf)(pd_temp);
 
 		//COMPUTE RANDOM THRESHOLD
 		double d_threshold = MCSample::getRandomInRange(0.0,1.0);
@@ -68,20 +66,20 @@ double ** MCSample::genSample(int i_num){
 
 			//WE SAVE THE RESULT
 			for(int i = 0; i < i_dimension; i++){
-				ppd_samples[i_num_samples][i] = pd_sample[i];
+				pd_sample[i] = pd_temp[i];
 			}
 
-			//INCREMENT COUNT OF SAVED 
-			i_num_samples++;
+			//SET ACCEPT TO TRUE
+			b_accept = true;
 		}
 
 		//FREE UP MEMORY
-		delete [] pd_sample;
+		delete [] pd_temp;
 	}
-	while(i_num_samples < i_num);
+	while(!b_accept);
 
 	//RETURN LIST OF SAMPLES
-	return ppd_samples;≈
+	return pd_sample;
 }
 
 

@@ -4,9 +4,6 @@
 
 #include <cstdlib>
 #include <ctime>
-#include <math>
-#include <fstream>
-#include <iostream>
 
 //We use an object oriented approach
 #ifndef MCSAMPLE_H
@@ -19,7 +16,7 @@
 //pd_uniqueID -> Pointer to/array of doubles
 //ppd_uniqueID -> pointer to/array of pointer to/array of doubles
 //pF_uniqueID -> Function pointer 
-
+//b_uniqueID -> boolean
 
 class MCSample{
 protected:
@@ -34,8 +31,8 @@ public:
 	static double getRandomInRange(double d_lower,double d_upper);	//A static member function for generating random doubles in a given range
 
 	MCSample(int i_dim,double* pd_lower,double* pd_upper,double (*pF_func)(double*) );	//This is the constructor 
-	
-	double ** genSample(int i_num);	//Generates a list of i_num sampled vectors 
-									//Returns an array of arrays (the first index indexes the sampled vector, the second is for the vector index)
+
+	double * genSample();	//Generates a random sampled vectors 
+						
 };
 #endif
